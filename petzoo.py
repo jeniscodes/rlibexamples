@@ -9,7 +9,7 @@ ray.init()
 
 print("here")
 
-print("Dashboard URL: http://{}".format(ray.get_webui_url()))
+#print("Dashboard URL: http://{}".format(ray.get_webui_url()))
 
 import shutil
 

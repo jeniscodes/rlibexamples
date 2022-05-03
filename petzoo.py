@@ -7,7 +7,7 @@ ray.shutdown()
 ray.init(ignore_reinit_error=True)
 print("here")
 
-print("Dashboard URL: http://{}".format(ray.get_webui_url()))
+#print("Dashboard URL: http://{}".format(ray.get_webui_url()))
 
 import shutil
 

@@ -3,7 +3,7 @@ import ray.rllib.agents.ppo as ppo
 
 print("here")
 
-ray.shutdown()
+#ray.shutdown()
 ray.init(ignore_reinit_error=True)
 print("here")
 

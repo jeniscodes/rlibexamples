@@ -22,26 +22,19 @@ for n in range(N_ITER):
   
 
   print(s.format(
-    n + 1,
+    n,
     result["episode_reward_min"],
     result["episode_reward_mean"],
     result["episode_reward_max"],
     result["episode_len_mean"],
     file_name
    ))
+  print(file_name)
 
-policy = agent.get_policy()
-save = agent.save()
-print(save)
-model = policy.model
-print(model.base_model.summary())
+print(file_name)
 
 config = ppo.DEFAULT_CONFIG.copy()
 config["log_level"] = "WARN"
 
-agent2 = ppo.PPOTrainer(config, env=SELECT_ENV)
 
-agent2.restore = file_name
-
-print(agent2)
 

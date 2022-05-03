@@ -3,8 +3,8 @@ import ray.rllib.agents.ppo as ppo
 
 print("here")
 
-ray.shutdown()
-ray.init(ignore_reinit_error=True)
+#ray.shutdown()
+ray.init()
 print("here")
 
 #print("Dashboard URL: http://{}".format(ray.get_webui_url()))

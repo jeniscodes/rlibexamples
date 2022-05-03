@@ -5,17 +5,19 @@ print("here")
 
 #ray.shutdown()
 ray.init()
+
+
 print("here")
 
-#print("Dashboard URL: http://{}".format(ray.get_webui_url()))
+print("Dashboard URL: http://{}".format(ray.get_webui_url()))
 
-# import shutil
+import shutil
 
 CHECKPOINT_ROOT = "tmp/ppo/taxi"
-# shutil.rmtree(CHECKPOINT_ROOT, ignore_errors=True, onerror=None)
+shutil.rmtree(CHECKPOINT_ROOT, ignore_errors=True, onerror=None)
 
-# ray_results = os.getenv("HOME") + "/ray_results/"
-# shutil.rmtree(ray_results, ignore_errors=True, onerror=None)
+ray_results = os.getenv("HOME") + "/ray_results/"
+shutil.rmtree(ray_results, ignore_errors=True, onerror=None)
 
 SELECT_ENV = "Taxi-v3"
 
@@ -39,5 +41,5 @@ for n in range(N_ITER):
     result["episode_reward_mean"],
     result["episode_reward_max"],
     result["episode_len_mean"],
-    #file_name
+    file_name
    ))

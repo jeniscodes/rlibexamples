@@ -43,3 +43,7 @@ for n in range(N_ITER):
     result["episode_len_mean"],
     file_name
    ))
+
+policy = agent.get_policy()
+model = policy.model
+print(model.base_model.summary())

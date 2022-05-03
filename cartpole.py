@@ -13,12 +13,13 @@ config["log_level"] = "WARN"
 
 agent = ppo.PPOTrainer(config, env=SELECT_ENV)
 
-N_ITER = 40
+N_ITER = 5
 s = "{:3d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:6.2f} saved {}"
 
 for n in range(N_ITER):
   result = agent.train()
   file_name = agent.save(CHECKPOINT_ROOT)
+  
 
   print(s.format(
     n + 1,
@@ -30,5 +31,7 @@ for n in range(N_ITER):
    ))
 
 policy = agent.get_policy()
+save = agent.save()
+print(save)
 model = policy.model
 print(model.base_model.summary())

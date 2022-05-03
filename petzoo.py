@@ -1,18 +1,22 @@
 import ray
+import ray.rllib.agents.ppo as ppo
 
-ray.init()
+ray.shutdown()
+ray.init(ignore_reinit_error=True)
 
-from ray import tune
+print("Dashboard URL: http://{}".format(ray.get_webui_url()))
 
-tune.run("PPO",
-            config={'env' : "CartPole-v1",
-                    "evaluation_interval" : 2, #num of training iter betn evaluations
-                    "evaluation_num_episodes" : 20,
-                    "num_gpus" : 1, 
+import shutil
 
-            
-            
-            }
+CHECKPOINT_ROOT = "tmp/ppo/taxi"
+shutil.rmtree(CHECKPOINT_ROOT, ignore_errors=True, onerror=None)
 
+ray_results = os.getenv("HOME") + "/ray_results/"
+shutil.rmtree(ray_results, ignore_errors=True, onerror=None)
 
-)
+SELECT_ENV = "Taxi-v3"
+
+config = ppo.DEFAULT_CONFIG.copy()
+config["log_level"] = "WARN"
+
+agent = ppo.PPOTrainer(config, env=SELECT_ENV)

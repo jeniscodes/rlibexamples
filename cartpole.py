@@ -35,3 +35,13 @@ save = agent.save()
 print(save)
 model = policy.model
 print(model.base_model.summary())
+
+config = ppo.DEFAULT_CONFIG.copy()
+config["log_level"] = "WARN"
+
+agent2 = ppo.PPOTrainer(config, env=SELECT_ENV)
+
+agent2.restore = file_name
+
+print(agent2)
+

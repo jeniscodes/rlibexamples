@@ -1,34 +1,19 @@
 import ray
-import ray.rllib.agents.ppo as ppo
-
-print("here")
-
-#ray.shutdown()
 ray.init()
 
+import ray.rllib.agents.ppo as ppo
 
-print("here")
+CHECKPOINT_ROOT = "tmp/ppo/cart"
 
-#print("Dashboard URL: http://{}".format(ray.get_webui_url()))
-import os
-import shutil
 
-CHECKPOINT_ROOT = "tmp/ppo/taxi"
-shutil.rmtree(CHECKPOINT_ROOT, ignore_errors=True, onerror=None)
-
-ray_results = os.getenv("HOME") + "/ray_results/"
-shutil.rmtree(ray_results, ignore_errors=True, onerror=None)
-
-SELECT_ENV = "Taxi-v3"
+SELECT_ENV = "CartPole-v1"
 
 config = ppo.DEFAULT_CONFIG.copy()
 config["log_level"] = "WARN"
 
 agent = ppo.PPOTrainer(config, env=SELECT_ENV)
 
-print("there")
-
-N_ITER = 30
+N_ITER = 40
 s = "{:3d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:6.2f} saved {}"
 
 for n in range(N_ITER):
@@ -47,4 +32,3 @@ for n in range(N_ITER):
 policy = agent.get_policy()
 model = policy.model
 print(model.base_model.summary())
-
